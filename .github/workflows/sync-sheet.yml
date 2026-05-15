@@ -19,9 +19,9 @@ jobs:
         shell: bash
         run: |
           mkdir -p data
-          BASE="https://docs.google.com/spreadsheets/d/e/2PACX-1vTlFrCf3x2v_EGGOEPsRtnzs1VCxNTvraynKCrhOFh5ObkNLD-hE2B4AnQ2rYamSA/pub"
-          QUERY="gid=1142550905&single=true&output=csv"
-          URL="${BASE}?${QUERY}"
+          SHEET_ID="1hfHiN4B_3uBmR9aXsAjEN2APMXGdZ95Li9aoeTbwmxo"
+          GID="1142550905"
+          URL="https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${GID}"
           echo "URL: ${URL}"
           wget --no-verbose -O data/besoins.csv "${URL}"
           echo "--- 5 premieres lignes ---"
