@@ -18,13 +18,11 @@ jobs:
       - name: Telecharger le CSV depuis Google Sheets
         shell: bash
         run: |
-          set -e
           mkdir -p data
           BASE="https://docs.google.com/spreadsheets/d/e/2PACX-1vTlFrCf3x2v_EGGOEPsRtnzs1VCxNTvraynKCrhOFh5ObkNLD-hE2B4AnQ2rYamSA/pub"
           QUERY="gid=1142550905&single=true&output=csv"
           URL="${BASE}?${QUERY}"
           echo "URL: ${URL}"
-          echo "${URL}" | xxd | head -5
           wget --no-verbose -O data/besoins.csv "${URL}"
           echo "--- 5 premieres lignes ---"
           head -n 5 data/besoins.csv || true
