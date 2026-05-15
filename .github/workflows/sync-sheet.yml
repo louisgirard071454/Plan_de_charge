@@ -16,12 +16,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Télécharger le CSV depuis Google Sheets
-        env:
-          SHEET_URL: ${{ secrets.SHEET_CSV_URL }}
         run: |
           mkdir -p data
-          curl -sSLf "$SHEET_URL" -o data/besoins.csv
-          echo "--- Contenu téléchargé (5 premières lignes) ---"
+          URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vTlFrCf3x2v_EGGOEPsRtnzs1VCxNTvraynKCrhOFh5ObkNLD-hE2B4AnQ2rYamSA/pub?gid=1142550905&single=true&output=csv'
+          echo "URL utilisée : $URL"
+          curl -sSLf "$URL" -o data/besoins.csv
+          echo "--- 5 premières lignes ---"
           head -n 5 data/besoins.csv || true
           echo "--- Taille : $(wc -c < data/besoins.csv) octets ---"
 
