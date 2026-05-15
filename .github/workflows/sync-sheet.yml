@@ -15,25 +15,31 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Télécharger le CSV depuis Google Sheets
+      - name: Telecharger le CSV depuis Google Sheets
+        shell: bash
         run: |
+          set -e
           mkdir -p data
-          URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vTlFrCf3x2v_EGGOEPsRtnzs1VCxNTvraynKCrhOFh5ObkNLD-hE2B4AnQ2rYamSA/pub?gid=1142550905&single=true&output=csv'
-          echo "URL utilisée : $URL"
-          curl -sSLf "$URL" -o data/besoins.csv
-          echo "--- 5 premières lignes ---"
+          BASE="https://docs.google.com/spreadsheets/d/e/2PACX-1vTlFrCf3x2v_EGGOEPsRtnzs1VCxNTvraynKCrhOFh5ObkNLD-hE2B4AnQ2rYamSA/pub"
+          QUERY="gid=1142550905&single=true&output=csv"
+          URL="${BASE}?${QUERY}"
+          echo "URL: ${URL}"
+          echo "${URL}" | xxd | head -5
+          wget --no-verbose -O data/besoins.csv "${URL}"
+          echo "--- 5 premieres lignes ---"
           head -n 5 data/besoins.csv || true
           echo "--- Taille : $(wc -c < data/besoins.csv) octets ---"
 
       - name: Commiter si changement
+        shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/besoins.csv
           if git diff --staged --quiet; then
-            echo "Pas de changement, rien à commiter."
+            echo "Pas de changement, rien a commiter."
           else
             git commit -m "Sync besoins.csv depuis Google Sheets [skip ci]"
             git push
-            echo "✓ besoins.csv mis à jour."
+            echo "OK : besoins.csv mis a jour."
           fi
