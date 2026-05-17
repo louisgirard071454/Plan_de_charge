@@ -2,11 +2,16 @@ name: Sync Google Sheet -> CSV
 
 on:
   schedule:
-    - cron: '*/1 * * * *'
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
+
+# Empeche deux runs simultanes (le 2eme attend ou annule le 1er)
+concurrency:
+  group: sync-csv
+  cancel-in-progress: false
 
 jobs:
   sync:
@@ -36,8 +41,13 @@ jobs:
           git add data/besoins.csv
           if git diff --staged --quiet; then
             echo "Pas de changement, rien a commiter."
-          else
-            git commit -m "Sync besoins.csv depuis Google Sheets [skip ci]"
-            git push
-            echo "OK : besoins.csv mis a jour."
+            exit 0
           fi
+          git commit -m "Sync besoins.csv depuis Google Sheets [skip ci]"
+          # On peut avoir du retard sur le distant, on rebase puis on pousse
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push && break
+            echo "Tentative $i echouee, on retente..."
+            sleep 3
+          done
+          echo "OK : besoins.csv mis a jour."
