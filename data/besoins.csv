@@ -2,10 +2,10 @@ INEO NUCLÉAIRE — Plan de charge chantiers,,,,,,,,,,
 Renseignez vos besoins en ressources par chantier. Les données sont synchronisées automatiquement avec l'outil de planification.,,,,,,,,,,
 ,,,,,,,,,,
 ID,Statut,Nom du chantier,Site,Tranche,Début,Fin,Conducteur de travaux,Chef de chantier,Chargé de travaux,Exécutants
-CHT-001,En cours,Maintenance générateurs vapeur,Gravelines,2,2026-05-01,2026-07-15,1,1,2,4
-CHT-002,Non débuté,Robinetterie tranche 1,Cattenom,1,2026-06-15,2026-09-30,1,1,1,3
-CHT-003,Non débuté,Arrêt programmé VD3,Gravelines,4,2026-07-10,2026-10-20,1,2,2,6
-CHT-004,Terminé,Révision pompes primaires,Bugey,3,2026-01-15,2026-04-30,1,1,1,2
-CHT-005,en cours,test,cattenom,2,25/05/2026,30/05/2026,0,0,1,2
-CHT-006,Non débuté ,Test 2,Dampierre,4,24/05/2026,30/05/2026,0,0,1,2
-CHT-007 ,Non débuté ,test 3,Tricastin,2,24/05/2026,30/05/2026,0,0,1,2
+CHT-001,Non débuté,PNPE 1068 - Installation tableau / Sous tableau,Cruas,4,25/05/2026,05/06/2026,0,0,1,1
+CHT-002,Non débuté,PNPE 1068 - Installation tableau / Sous tableau,Gravelines,2,08/06/2026,12/06/2026,0,0,1,1
+CHT-003,Non débuté,PNPE 1068 - Installation tableau / Sous tableau,Chinon,4,08/06/2026,03/07/2026,0,0,1,1
+CHT-004,Non débuté,PNPE2427 - ZC- Supervision installation tableau LLS Part 1,Paluel,3,08/06/2026,12/06/2026,0,0,1,0
+CHT-005,Non débuté,PNPE2427 - ZC- Supervision installation tableau LLS Part 2 ,Paluel,3,22/06/2026,26/06/2026,0,0,1,0
+CHT-006,Non débuté,PNPEi427 - ZC- Supervision installation tableau LLS Part 1,Cattenom,4,06/07/2026,10/07/2026,0,0,1,2
+CHT-007,Non débuté,PNPEi427 - ZC- Supervision installation tableau LLS Part 2,Tricastin,2,13/07/2026,17/07/2026,0,0,1,1
